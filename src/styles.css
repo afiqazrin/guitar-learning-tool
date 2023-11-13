@@ -1,10 +1,17 @@
-*{
+@font-face {
+  font-family: nirvana;
+  src: url(../src/assets/fonts/NIRVANA.TTF);
+}
+
+* {
   padding: 0;
   margin: 0;
+  font-family: serif;
+  
 }
 
 body {
-  background-image: url(./assets/images/background.jpg);
+  background-image: url(/guitar-ear-tester/src/assets/images/background.jpg);
   background-size: cover;
   background-attachment: fixed;
   color: white;
@@ -18,7 +25,7 @@ body {
   grid-template-rows: 1fr 5fr;
 }
 
-.content {
+#content {
   grid-row: 2/-1;
   display: flex;
   justify-content: center;
@@ -39,7 +46,8 @@ body {
 }
 
 .header .title {
-  font-family: tropical-asian;
+  color: yellow;
+  word-spacing: -7.5px;
 }
 
 .header button {
@@ -56,18 +64,64 @@ button:hover {
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(4,1fr);
-  width:100%;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
   height: auto;
   margin: 3em;
   gap: 50px;
 }
 
 .grid-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
   font-size: 25px;
   text-align: center;
   border-radius: 20px;
-  height: 200px;
+  height: 75px;
+  font-weight: bold;
 }
 
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  font-size: 100px;
+  width: 100%;
+  height: auto;
+  margin: 3em;
+  gap: 50px;
+}
+
+.flex-top {
+  flex-basis: 60%;
+}
+
+.flex-top button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+  font-size: 75px;
+  border-radius: 20px;
+}
+.flex-bottom {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  height: 100px;
+}
+
+.flex-bottom button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  font-size: 50px;
+
+}
+
+.flex-bottom .results {
+  grid-column: 1/-1;
+}

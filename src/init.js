@@ -1,5 +1,6 @@
 function initContent() {
-    document.querySelector('.content').innerHTML = ""
+  let contentDiv = document.getElementById('content');
+  contentDiv.innerHTML = "";
 }
 
-export {initContent};
+export { initContent };
