@@ -27,9 +27,15 @@ function renderChordPlayer() {
 }
 
 function renderPractice() {
-  let flexDiv = createElement("div", "flex-container", "");
+  initContent();
   initPractice();
-  console.log(practiceChordList)
+  let flexDiv = createElement("div", "flex-container", "");
+  var audio = new Audio();
+  audio.src = `../src/assets/sounds/${correctChord}.wav`;
+  audio.addEventListener("canplaythrough", function () {
+    this.play();
+  });
+  console.log(practiceChordList);
   let topDiv = createElement(
     "div",
     "flex-top",
@@ -37,7 +43,7 @@ function renderPractice() {
       <button id="refresh">Refresh</button>
     `
   );
-  
+
   flexDiv.append(topDiv);
   let resultsDiv = createElement("div", "results", "");
   let bottomDiv = createElement("div", "flex-bottom", "");
@@ -47,13 +53,16 @@ function renderPractice() {
     button.addEventListener("click", function () {
       if (button.textContent === correctChord) {
         resultsDiv.textContent = "Thats right!";
+        // Example of refreshing after 3 seconds
+        setTimeout(() => {
+          renderPractice();
+        }, 1000);
       } else {
         resultsDiv.textContent = "That's wrong! Try Again.";
       }
     });
     bottomDiv.appendChild(button);
     bottomDiv.appendChild(resultsDiv);
-
   });
   contentDiv.appendChild(flexDiv);
   const correctButton = document.getElementById(correctChord);
@@ -64,11 +73,9 @@ function renderPractice() {
       this.play();
     });
   });
-  const refreshButton = document.getElementById("refresh")
-  refreshButton.addEventListener("click", function(){
-    initContent();
-    initPractice();
+  const refreshButton = document.getElementById("refresh");
+  refreshButton.addEventListener("click", function () {
     renderPractice();
-  })
+  });
 }
 export { renderChordPlayer, renderPractice };
