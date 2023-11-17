@@ -15,6 +15,6 @@ This app is a free and open-source guitar tool designed to provide essential fea
 Many existing tools hide essential features behind expensive subscriptions. This app aims to break this trend by offering a free and open-source alternative, making guitar education accessible to everyone.
 
 ## Contribution
-Contributions are welcome! If you have ideas for improvements or new features, please submit a pull request. Be sure to check out the [contribution guidelines](CONTRIBUTING.md).
+Contributions are welcome! If you have ideas for improvements or new features, please submit a pull request. 
 
 Happy playing!
