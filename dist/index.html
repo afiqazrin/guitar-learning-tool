@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/guitar-ear-tester/src/styles.css" />
-    <title>Dynamic GridLayout</title>
+    <link rel="stylesheet" href="../src/styles.css" />
+    <title>Guitar Ear Trainer</title>
   </head>
   <body>
     <div class="container">
@@ -15,7 +15,26 @@
           <button class="practice-btn" id="practice-btn">PRACTICE</button>
         </div>
       </div>
-      <div id="content"></div>
+      <div id="content">
+        <div class="flex-container">
+          <div class="flex-top">
+            <form data-new-search-form>
+              <input
+                type="text"
+                name="new-search"
+                id="new-search"
+                class="new-search"
+                placeholder="Search for a song"
+                data-new-search-input
+              />
+            </form>
+            hello
+          </div>
+          <div class="flex-bottom">
+            <div class="results">....</div>
+          </div>
+        </div>
+      </div>
     </div>
     <script src="main.js"></script>
   </body>
