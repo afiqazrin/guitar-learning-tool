@@ -90,15 +90,10 @@ button:hover {
 
 .flex-top {
   flex-basis: 60%;
-}
-
-.flex-top input {
-  width: 50%;
-  height: 100%;
-  font-size: 20px;
-  padding: 20px;
-  border-radius: 20px;
-  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .flex-top button {

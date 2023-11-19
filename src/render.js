@@ -7,10 +7,11 @@ import {
   initPractice,
   practiceChordList,
   checkChoice,
-} from "./earPractice";
+} from "./practice";
 import { initContent } from "./init";
 
 function renderChordPlayer() {
+  document.body.style.backgroundImage = "url(../src/assets/images/background.jpg)"
   let gridDiv = createElement("div", "grid-container", "");
   contentDiv.appendChild(gridDiv);
   populateChordList();
@@ -27,6 +28,7 @@ function renderChordPlayer() {
 }
 
 function renderPractice() {
+  document.body.style.backgroundImage = "url(../src/assets/images/practice.png)"
   initContent();
   initPractice();
   let flexDiv = createElement("div", "flex-container", "");
@@ -53,7 +55,6 @@ function renderPractice() {
     button.addEventListener("click", function () {
       if (button.textContent === correctChord) {
         resultsDiv.textContent = "Thats right!";
-        // Example of refreshing after 3 seconds
         setTimeout(() => {
           renderPractice();
         }, 1000);
@@ -78,4 +79,9 @@ function renderPractice() {
     renderPractice();
   });
 }
-export { renderChordPlayer, renderPractice };
+
+function renderMetronome(){
+  document.body.style.backgroundImage = "url(../src/assets/images/metronome.jpg)"
+  initContent();
+}
+export { renderChordPlayer, renderPractice, renderMetronome };
