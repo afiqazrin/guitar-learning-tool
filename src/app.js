@@ -1,28 +1,26 @@
-import { renderChordPlayer, renderPractice, renderMetronome } from "./render";
-import { initContent } from "./init";
+// import { renderChordPlayer, renderPractice, renderMetronome } from "./render";
+// import { initContent } from "./init";
 import { getAccessToken, searchSpotify, getSongInfo } from "./spotify";
-const homeButton = document.getElementById("home-btn");
-const practiceButton = document.getElementById("practice-btn");
-const metronomeButton = document.getElementById("metronome-btn")
-initContent();
-renderChordPlayer();
-homeButton.addEventListener('click', ()=> {
-    initContent();
-    renderChordPlayer();
-});
+// const homeButton = document.getElementById("home-btn");
+// const practiceButton = document.getElementById("practice-btn");
+// const metronomeButton = document.getElementById("metronome-btn")
+// initContent();
+// renderChordPlayer();
+// homeButton.addEventListener('click', ()=> {
+//     initContent();
+//     renderChordPlayer();
+// });
 
-practiceButton.addEventListener('click', ()=> {
-    initContent();
-    renderPractice();
-})
+// practiceButton.addEventListener('click', ()=> {
+//     initContent();
+//     renderPractice();
+// })
 
-metronomeButton.addEventListener('click', ()=> {
-  initContent();
-  renderMetronome();
-})
+// metronomeButton.addEventListener('click', ()=> {
+//   initContent();
+//   renderMetronome();
+// })
+import { autoCompleteSearch } from "./metronome";
 getAccessToken();
-searchSpotify("All Apologies", localStorage.getItem("access_token"));
-getSongInfo(
-  localStorage.getItem("song_id"),
-  localStorage.getItem("access_token")
-);
+const songInput = document.getElementById("search-input");
+songInput.addEventListener('keyup', autoCompleteSearch);
