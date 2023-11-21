@@ -2,23 +2,26 @@ import {
   renderChordPlayer,
   renderPractice,
   renderMetronomeSearch,
+  renderStartButton,
 } from "./render";
 import { initContent } from "./init";
 import { getAccessToken, searchSpotify, getSongInfo } from "./spotify";
-// const homeButton = document.getElementById("home-btn");
-// const practiceButton = document.getElementById("practice-btn");
-const metronomeButton = document.getElementById("metronome-btn");
-// initContent();
-// renderChordPlayer();
-// homeButton.addEventListener('click', ()=> {
-//     initContent();
-//     renderChordPlayer();
-// });
+import { autoCompleteSearch } from "./metronome";
 
-// practiceButton.addEventListener('click', ()=> {
-//     initContent();
-//     renderPractice();
-// })
+const homeButton = document.getElementById("home-btn");
+const practiceButton = document.getElementById("practice-btn");
+const metronomeButton = document.getElementById("metronome-btn");
+initContent();
+renderChordPlayer();
+homeButton.addEventListener("click", () => {
+  initContent();
+  renderChordPlayer();
+});
+
+practiceButton.addEventListener("click", () => {
+  initContent();
+  renderStartButton();
+});
 
 metronomeButton.addEventListener("click", () => {
   getAccessToken();
@@ -27,4 +30,3 @@ metronomeButton.addEventListener("click", () => {
   const songInput = document.getElementById("search-input");
   songInput.addEventListener("keyup", autoCompleteSearch);
 });
-import { autoCompleteSearch } from "./metronome";

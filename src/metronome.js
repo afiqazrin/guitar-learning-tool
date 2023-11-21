@@ -1,5 +1,6 @@
 import { searchSpotify } from "./spotify";
 import { initContent } from "./init";
+
 function handleListClick(event) {
   const clickedItemId = event.currentTarget.dataset.songId;
   const clickedSongName = event.currentTarget.dataset.songName;
@@ -14,12 +15,11 @@ function handleListClick(event) {
 function autoCompleteSearch(event) {
   const songsUl = document.querySelector(".autocomplete-results");
   if (
-    (event.target.value != null && event.keyCode != 8) ||
-    (event.target.value != null && event.keyCode == 8)
+    (event.target.value != "" && event.keyCode != 8) ||
+    (event.target.value != "" && event.keyCode == 8)
   ) {
     searchSpotify(event.target.value, localStorage.getItem("access_token"));
 
-    // // Clear previous search results
     songsUl.innerHTML = "";
 
     const songsArray = JSON.parse(localStorage.getItem("songsArray")) || [];
@@ -43,12 +43,15 @@ function autoCompleteSearch(event) {
             </div>
         `;
 
-      // Add event listener to each list item
       autoList.addEventListener("click", handleListClick);
 
-      // Append the list item to the ul element
       songsUl.appendChild(autoList);
     }
+  } else if (
+    event.target.value == null ||
+    (event.target.value == "" && event.keyCode == 8)
+  ) {
+    songsUl.innerHTML = "";
   }
 }
 

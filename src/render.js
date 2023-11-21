@@ -28,6 +28,19 @@ function renderChordPlayer() {
   });
 }
 
+function renderStartButton() {
+  document.body.style.backgroundImage =
+    "url(../src/assets/images/practice.png)";
+  let flexDiv = createElement("div", "flex-container", "");
+  const startPracticeButton = createElement(
+    "button",
+    "start-practice-btn",
+    "START"
+  );
+  startPracticeButton.addEventListener("click", renderPractice);
+  flexDiv.appendChild(startPracticeButton);
+  contentDiv.appendChild(flexDiv);
+}
 function renderPractice() {
   document.body.style.backgroundImage =
     "url(../src/assets/images/practice.png)";
@@ -39,11 +52,10 @@ function renderPractice() {
   audio.addEventListener("canplaythrough", function () {
     this.play();
   });
-  console.log(practiceChordList);
   let topDiv = createElement(
     "div",
     "flex-top",
-    `<button id=${correctChord} data-chord=${correctChord}>Play Chord Again</button>
+    `<button id=${correctChord} data-chord=${correctChord}>Repeat Chord</button>
       <button id="refresh">Refresh</button>
     `
   );
@@ -56,11 +68,15 @@ function renderPractice() {
   practiceChordList.forEach((button) => {
     button.addEventListener("click", function () {
       if (button.textContent === correctChord) {
+        resultsDiv.classList.remove("wrong");
+        resultsDiv.classList.add("correct");
         resultsDiv.textContent = "Thats right!";
         setTimeout(() => {
           renderPractice();
         }, 1000);
       } else {
+        resultsDiv.classList.add("wrong");
+        resultsDiv.classList.remove("correct");
         resultsDiv.textContent = "That's wrong! Try Again.";
       }
     });
@@ -97,4 +113,9 @@ function renderMetronomeSearch() {
   searchDiv.appendChild(autoCompleteUl);
   contentDiv.appendChild(searchDiv);
 }
-export { renderChordPlayer, renderPractice, renderMetronomeSearch };
+export {
+  renderChordPlayer,
+  renderPractice,
+  renderMetronomeSearch,
+  renderStartButton,
+};
