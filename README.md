@@ -1,4 +1,4 @@
-# guitar-ear-tester
+# guitar-learning-tool
 
 ## Overview
 This app is a free and open-source guitar tool designed to provide essential features to guitarists without the need for expensive subscriptions. With a focus on simplicity and accessibility, this app empowers users to explore chords, train their ears, and enhance their practice sessions.
