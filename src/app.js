@@ -6,11 +6,12 @@ import {
 } from "./render";
 import { initContent } from "./init";
 import { getAccessToken, searchSpotify, getSongInfo } from "./spotify";
-import { autoCompleteSearch } from "./metronome";
+import { autoCompleteSearch } from "./songSearch";
 
 const homeButton = document.getElementById("home-btn");
 const practiceButton = document.getElementById("practice-btn");
 const metronomeButton = document.getElementById("metronome-btn");
+
 initContent();
 renderChordPlayer();
 homeButton.addEventListener("click", () => {

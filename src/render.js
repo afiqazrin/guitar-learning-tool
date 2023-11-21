@@ -99,6 +99,7 @@ function renderPractice() {
 }
 
 function renderMetronomeSearch() {
+  initContent();
   document.body.style.backgroundImage =
     "url(../src/assets/images/metronome.jpg)";
   initContent();
@@ -113,9 +114,79 @@ function renderMetronomeSearch() {
   searchDiv.appendChild(autoCompleteUl);
   contentDiv.appendChild(searchDiv);
 }
+
+function renderMetronome(
+  songName,
+  songArtist,
+  songImageUrl,
+  tempo,
+  time_signature
+) {
+  const metronomeContainer = createElement("div", "metronome-container", "");
+  const metronome = createElement("div", "metronome", "");
+  const bpmDisplay = createElement("div", "bpm-display", "");
+  const tempoSpan = createElement("span", "tempo", tempo);
+  const bpmSpan = createElement("span", "bpm", "BPM");
+  const songDetailsDiv = createElement("div", "song-details", "");
+  const songImageElement = document.createElement("img");
+  songImageElement.src = songImageUrl;
+  songImageElement.alt = "Song Album Cover";
+  const tempoText = createElement(
+    "div",
+    "tempo-text",
+    `${songName} - ${songArtist}`
+  );
+  const tempoSettings = createElement("div", "tempo-settings", "");
+  const decreaseTempoBtn = createElement(
+    "div",
+    "adjust-tempo-btn decrease-tempo",
+    "-"
+  );
+  const sliderInput = createElement("input", "slider");
+  sliderInput.type = "range";
+  sliderInput.min = "20";
+  sliderInput.max = "280";
+  sliderInput.step = "1";
+  const increaseTempoBtn = createElement(
+    "div",
+    "adjust-tempo-btn increase-tempo",
+    "+"
+  );
+  const measures = createElement("div", "measures", "");
+  const subtractBeats = createElement("div", "subtract-beats stepper", "-");
+  const measureCount = createElement("div", "measure-count", time_signature);
+  const addBeats = createElement("div", "add-beats stepper", "+");
+  const choiceDiv = createElement("div", "choice-div", "");
+  const startBtn = createElement("div", "start-stop", "START");
+  const selectSongBtn = createElement(
+    "div",
+    "select-song",
+    "SELECT ANOTHER SONG"
+  );
+  bpmDisplay.appendChild(tempoSpan);
+  bpmDisplay.appendChild(bpmSpan);
+  songDetailsDiv.appendChild(songImageElement);
+  songDetailsDiv.appendChild(tempoText);
+  tempoSettings.appendChild(decreaseTempoBtn);
+  tempoSettings.appendChild(sliderInput);
+  tempoSettings.appendChild(increaseTempoBtn);
+  measures.appendChild(subtractBeats);
+  measures.appendChild(measureCount);
+  measures.appendChild(addBeats);
+  choiceDiv.appendChild(startBtn);
+  choiceDiv.appendChild(selectSongBtn);
+  metronome.appendChild(bpmDisplay);
+  metronome.appendChild(songDetailsDiv);
+  metronome.appendChild(tempoSettings);
+  metronome.appendChild(measures);
+  metronome.appendChild(choiceDiv);
+  metronomeContainer.appendChild(metronome);
+  contentDiv.appendChild(metronomeContainer);
+}
 export {
   renderChordPlayer,
   renderPractice,
   renderMetronomeSearch,
   renderStartButton,
+  renderMetronome,
 };

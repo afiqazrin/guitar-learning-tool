@@ -22,7 +22,7 @@ body {
 }
 
 #content {
-  grid-row: 2/-1;
+  /* grid-row: 2/-1; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -194,3 +194,141 @@ button:hover {
   align-items: center;
   justify-content: space-around;
 }
+
+.metronome-container {
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.metronome {
+  height: 50%;
+  width: 50%;
+  font-weight: bold;
+}
+
+.bpm-display {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.tempo {
+  color: #e74c3c;
+  font-size: 75px;
+}
+
+.bpm {
+  color: #fff;
+}
+
+.song-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.song-details img {
+  height: 64px;
+}
+.tempo-text {
+  font-size: 18px;
+  color: #fff;
+  padding-top: 10px;
+}
+
+.tempo-settings {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  padding-bottom: 20px;
+}
+
+.adjust-tempo-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 75px;
+  height: 75px;
+  font-size: 30px;
+  line-height: 1; /* Ensure the text is centered vertically */
+  color: #fff;
+  /* background-color: #3498db; */
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.adjust-tempo-btn:hover {
+  background-color: #297fb8; /* Darker color on hover */
+}
+
+/* ... (remaining styles) ... */
+
+
+.slider {
+  width: 100%;
+}
+
+.choice-div {
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1px;
+  font-weight: bold;
+}
+.start-stop {
+  font-size: 40px;
+  border-radius: 15px;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.select-song {
+  font-size: 40px;
+  border-radius: 15px;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px;
+}
+.start-stop:hover {
+  background-color: rgba(0,0,0,0.4);
+}
+.select-song:hover {
+  background-color: rgba(0,0,0,0.4);
+}
+.measures {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  padding-bottom: 20px;
+}
+
+.stepper {
+  font-size: 30px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  color: #fff;
+  /* background-color: #e74c3c; */
+  cursor: pointer;
+}
+
+.stepper:hover {
+  background-color: #e74c3c;
+}
+.measure-count {
+  font-size: 24px;
+  color: #fff;
+}
+
+
