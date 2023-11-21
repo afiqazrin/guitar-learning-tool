@@ -11,7 +11,8 @@ import {
 import { initContent } from "./init";
 
 function renderChordPlayer() {
-  document.body.style.backgroundImage = "url(../src/assets/images/background.jpg)"
+  document.body.style.backgroundImage =
+    "url(../src/assets/images/background.jpg)";
   let gridDiv = createElement("div", "grid-container", "");
   contentDiv.appendChild(gridDiv);
   populateChordList();
@@ -28,7 +29,8 @@ function renderChordPlayer() {
 }
 
 function renderPractice() {
-  document.body.style.backgroundImage = "url(../src/assets/images/practice.png)"
+  document.body.style.backgroundImage =
+    "url(../src/assets/images/practice.png)";
   initContent();
   initPractice();
   let flexDiv = createElement("div", "flex-container", "");
@@ -80,8 +82,19 @@ function renderPractice() {
   });
 }
 
-function renderMetronome(){
-  document.body.style.backgroundImage = "url(../src/assets/images/metronome.jpg)"
+function renderMetronomeSearch() {
+  document.body.style.backgroundImage =
+    "url(../src/assets/images/metronome.jpg)";
   initContent();
+  let searchDiv = createElement("div", "search-container", "");
+  let searchInput = document.createElement("input");
+  searchInput.setAttribute("type", "text");
+  searchInput.id = "search-input";
+  searchInput.setAttribute("placeholder", "Search for a song...");
+  searchInput.setAttribute("autocomplete", "off");
+  let autoCompleteUl = createElement("ul", "autocomplete-results", "");
+  searchDiv.appendChild(searchInput);
+  searchDiv.appendChild(autoCompleteUl);
+  contentDiv.appendChild(searchDiv);
 }
-export { renderChordPlayer, renderPractice, renderMetronome };
+export { renderChordPlayer, renderPractice, renderMetronomeSearch };

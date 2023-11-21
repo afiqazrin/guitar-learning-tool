@@ -1,9 +1,13 @@
-// import { renderChordPlayer, renderPractice, renderMetronome } from "./render";
-// import { initContent } from "./init";
+import {
+  renderChordPlayer,
+  renderPractice,
+  renderMetronomeSearch,
+} from "./render";
+import { initContent } from "./init";
 import { getAccessToken, searchSpotify, getSongInfo } from "./spotify";
 // const homeButton = document.getElementById("home-btn");
 // const practiceButton = document.getElementById("practice-btn");
-// const metronomeButton = document.getElementById("metronome-btn")
+const metronomeButton = document.getElementById("metronome-btn");
 // initContent();
 // renderChordPlayer();
 // homeButton.addEventListener('click', ()=> {
@@ -16,11 +20,11 @@ import { getAccessToken, searchSpotify, getSongInfo } from "./spotify";
 //     renderPractice();
 // })
 
-// metronomeButton.addEventListener('click', ()=> {
-//   initContent();
-//   renderMetronome();
-// })
+metronomeButton.addEventListener("click", () => {
+  getAccessToken();
+  initContent();
+  renderMetronomeSearch();
+  const songInput = document.getElementById("search-input");
+  songInput.addEventListener("keyup", autoCompleteSearch);
+});
 import { autoCompleteSearch } from "./metronome";
-getAccessToken();
-const songInput = document.getElementById("search-input");
-songInput.addEventListener('keyup', autoCompleteSearch);

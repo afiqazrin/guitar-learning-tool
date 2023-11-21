@@ -150,6 +150,8 @@ button:hover {
     list-style-type: none;
     padding: 0;
     background-color: #fff;
+    overflow-y: auto;
+    max-height: 420px;
 }
 
 .autocomplete-results li {
@@ -167,4 +169,13 @@ button:hover {
 
 .autocomplete-results li:hover {
     background-color: #f0f0f0;
+}
+
+.metronome-flex-container {
+    display: flex;
+    font-size: 100px;
+    width: 100%;
+    height: auto;
+    align-items: center;
+    justify-content: space-around;
 }
