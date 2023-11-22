@@ -9,7 +9,15 @@ import {
   checkChoice,
 } from "./practice";
 import { initContent } from "./init";
-
+import {
+  increaseTempoListener,
+  decreaseTempoListener,
+  tempoSliderListener,
+  increaseBeatsListener,
+  decreaseBeatsListener,
+  startMetronomeListener,
+  selectNewSongListener,
+} from "./metronome";
 function renderChordPlayer() {
   document.body.style.backgroundImage =
     "url(../src/assets/images/background.jpg)";
@@ -147,22 +155,30 @@ function renderMetronome(
   sliderInput.min = "20";
   sliderInput.max = "280";
   sliderInput.step = "1";
+  sliderInput.value = tempo;
   const increaseTempoBtn = createElement(
     "div",
     "adjust-tempo-btn increase-tempo",
     "+"
   );
+  sliderInput.addEventListener("input", tempoSliderListener);
+  decreaseTempoBtn.addEventListener("click", decreaseTempoListener);
+  increaseTempoBtn.addEventListener("click", increaseTempoListener);
   const measures = createElement("div", "measures", "");
   const subtractBeats = createElement("div", "subtract-beats stepper", "-");
+  subtractBeats.addEventListener("click", decreaseBeatsListener);
   const measureCount = createElement("div", "measure-count", time_signature);
   const addBeats = createElement("div", "add-beats stepper", "+");
+  addBeats.addEventListener("click", increaseBeatsListener);
   const choiceDiv = createElement("div", "choice-div", "");
   const startBtn = createElement("div", "start-stop", "START");
+  startBtn.addEventListener("click", startMetronomeListener);
   const selectSongBtn = createElement(
     "div",
     "select-song",
     "SELECT ANOTHER SONG"
   );
+  selectSongBtn.addEventListener("click", selectNewSongListener);
   bpmDisplay.appendChild(tempoSpan);
   bpmDisplay.appendChild(bpmSpan);
   songDetailsDiv.appendChild(songImageElement);
@@ -186,7 +202,7 @@ function renderMetronome(
 export {
   renderChordPlayer,
   renderPractice,
-  renderMetronomeSearch,
   renderStartButton,
   renderMetronome,
+  renderMetronomeSearch,
 };

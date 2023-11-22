@@ -60,8 +60,8 @@ function autoCompleteSearch(event) {
     event.target.value == null ||
     (event.target.value == "" && event.keyCode == 8)
   ) {
+    localStorage.removeItem("songsArray");
     songsUl.innerHTML = "";
-    autoList.innerHTML = "";
   }
 }
 

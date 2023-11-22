@@ -24,5 +24,4 @@ function initPractice() {
     shuffledChords[Math.floor(Math.random() * shuffledChords.length)];
 }
 
-
 export { initPractice, practiceChordList, correctChord };
