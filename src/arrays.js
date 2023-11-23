@@ -1,7 +1,4 @@
-import { createElement } from "./createElement";
-
-const guitarChords = ["C", "D", "E", "F", "G", "A", "B", "Em", "Am", "Dm"];
-const cChords = [
+export const CChords = [
   "C",
   "Cm",
   "Cdim",
@@ -21,7 +18,7 @@ const cChords = [
   "C13",
   "C5",
 ];
-const cSharpChords = [
+export const CSharpChords = [
   "C#",
   "C#m",
   "C#dim",
@@ -41,7 +38,7 @@ const cSharpChords = [
   "C#13",
   "C#5",
 ];
-const dbChords = [
+export const DbChords = [
   "Db",
   "Dbm",
   "Dbdim",
@@ -61,7 +58,7 @@ const dbChords = [
   "Db13",
   "Db5",
 ];
-const DChords = [
+export const DChords = [
   "D",
   "Dm",
   "Ddim",
@@ -81,7 +78,7 @@ const DChords = [
   "D13",
   "D5",
 ];
-const DSharpChords = [
+export const DSharpChords = [
   "D#",
   "D#m",
   "D#dim",
@@ -101,7 +98,7 @@ const DSharpChords = [
   "D#13",
   "D#5",
 ];
-const EbChords = [
+export const EbChords = [
   "Eb",
   "Ebm",
   "Ebdim",
@@ -121,7 +118,7 @@ const EbChords = [
   "Eb13",
   "Eb5",
 ];
-const EChords = [
+export const EChords = [
   "E",
   "Em",
   "Edim",
@@ -141,7 +138,7 @@ const EChords = [
   "E13",
   "E5",
 ];
-const FChords = [
+export const FChords = [
   "F",
   "Fm",
   "Fdim",
@@ -161,7 +158,7 @@ const FChords = [
   "F13",
   "F5",
 ];
-const FSharpChords = [
+export const FSharpChords = [
   "F#",
   "F#m",
   "F#dim",
@@ -181,7 +178,7 @@ const FSharpChords = [
   "F#13",
   "F#5",
 ];
-const GbChords = [
+export const GbChords = [
   "Gb",
   "Gbm",
   "Gbdim",
@@ -199,9 +196,9 @@ const GbChords = [
   "Gb9",
   "Gb11",
   "Gb13",
-  "Gb5"
+  "Gb5",
 ];
-const GChords = [
+export const GChords = [
   "G",
   "Gm",
   "Gdim",
@@ -219,9 +216,9 @@ const GChords = [
   "G9",
   "G11",
   "G13",
-  "G5"
+  "G5",
 ];
-const GSharpChords = [
+export const GSharpChords = [
   "G#",
   "G#m",
   "G#dim",
@@ -239,9 +236,9 @@ const GSharpChords = [
   "G#9",
   "G#11",
   "G#13",
-  "G#5"
+  "G#5",
 ];
-const AbChords = [
+export const AbChords = [
   "Ab",
   "Abm",
   "Abdim",
@@ -259,9 +256,9 @@ const AbChords = [
   "Ab9",
   "Ab11",
   "Ab13",
-  "Ab5"
+  "Ab5",
 ];
-const AChords = [
+export const AChords = [
   "A",
   "Am",
   "Adim",
@@ -279,9 +276,9 @@ const AChords = [
   "A9",
   "A11",
   "A13",
-  "A5"
+  "A5",
 ];
-const ASharpChords = [
+export const ASharpChords = [
   "A#",
   "A#m",
   "A#dim",
@@ -299,9 +296,9 @@ const ASharpChords = [
   "A#9",
   "A#11",
   "A#13",
-  "A#5"
+  "A#5",
 ];
-const BbChords = [
+export const BbChords = [
   "Bb",
   "Bbm",
   "Bbdim",
@@ -319,9 +316,9 @@ const BbChords = [
   "Bb9",
   "Bb11",
   "Bb13",
-  "Bb5"
+  "Bb5",
 ];
-const BChords = [
+export const BChords = [
   "B",
   "Bm",
   "Bdim",
@@ -339,18 +336,6 @@ const BChords = [
   "B9",
   "B11",
   "B13",
-  "B5"
+  "B5",
 ];
 
-export var buttonList = [];
-function populateChordList() {
-  buttonList = [];
-  for (let i = 0; i < guitarChords.length; i++) {
-    let chordButton = createElement("button", "grid-item", guitarChords[i]);
-    buttonList.push(chordButton);
-  }
-  return buttonList;
-}
-export { guitarChords, populateChordList };
-
-// <img alt="Dm guitar chord" title="Dm guitar chord" src="https://www.scales-chords.com/chord-charts/guitar-Dm-d-n-l-h-x-x-0-2-3-1.jpg">

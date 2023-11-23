@@ -6,8 +6,8 @@ This app is a free and open-source guitar tool designed to provide essential fea
 ## Features
 - **Chord Playback:** Hear the sound of each chord to aid in learning and recognition.
 - **Chord Ear Trainer:** Sharpen your ear by practicing chord recognition through interactive exercises.
+- **Metronome:** Keep your playing in time with an adjustable metronome.
 - **Practice Routines (Upcoming):** Create and save personalized practice routines tailored to your goals.
-- **Metronome (Upcoming):** Keep your playing in time with an adjustable metronome.
 - **Tuner (Upcoming):** Ensure your guitar is perfectly tuned with a built-in tuner.
 - **Chord Database (Upcoming):** Explore a comprehensive database of chords with interactive diagrams.
   

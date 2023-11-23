@@ -142,14 +142,45 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  /* flex-direction: column; */
   width: 100%;
-  margin: 50px auto;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  height: auto;
+  padding: 100px;
+  gap: 50px;
 }
 
+.left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+}
+
+.or-span {
+  color: #ddd;
+  font-size: 40px;
+}
+.right {
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  font-size: 40px;
+  color: #ddd;
+  padding: 20px;
+  cursor: pointer;
+  border-radius: 25px;
+}
+
+.right:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
 #search-input {
-  width: 50%;
+  width: 100%;
   height: 50px;
   padding: 10px;
   font-size: 16px;
@@ -158,7 +189,7 @@ button:hover {
 }
 
 .autocomplete-results {
-  width: 50%;
+  width: 100%;
   border-top: none;
   list-style-type: none;
   padding: 0;
@@ -209,6 +240,7 @@ button:hover {
 }
 
 .bpm-display {
+  padding-bottom: 20px;
   font-size: 36px;
   font-weight: bold;
 }
@@ -266,7 +298,6 @@ button:hover {
 
 /* ... (remaining styles) ... */
 
-
 .slider {
   width: 100%;
 }
@@ -295,10 +326,10 @@ button:hover {
   padding: 10px;
 }
 .start-stop:hover {
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 .select-song:hover {
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 .measures {
   display: flex;
@@ -328,5 +359,3 @@ button:hover {
   font-size: 24px;
   color: #fff;
 }
-
-

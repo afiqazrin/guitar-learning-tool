@@ -6,6 +6,7 @@ const click2 = new Audio("../src/assets/sounds/Synth_Block_A_lo.wav");
 let count = 0;
 let isRunning = false;
 let timer;
+
 function decreaseTempoListener() {
   const tempoDisplay = document.querySelector(".tempo");
   const tempoSlider = document.querySelector(".slider");
@@ -86,7 +87,7 @@ function increaseBeatsListener() {
 
 function startMetronomeListener() {
   const tempoDisplay = document.querySelector(".tempo");
-
+  console.log(isRunning);
   let bpm = tempoDisplay.textContent;
 
   console.log("bpm " + bpm);
@@ -98,6 +99,7 @@ function startMetronomeListener() {
     this.textContent = "STOP";
   } else {
     window.clearInterval(timer);
+    count = 0;
     console.log("stopping");
     isRunning = false;
     this.textContent = "START";
@@ -124,6 +126,8 @@ function playClick() {
 
 function selectNewSongListener() {
   window.clearInterval(timer);
+  isRunning = false;
+  count = 0;
   initContent();
   renderMetronomeSearch();
   const songInput = document.getElementById("search-input");

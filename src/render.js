@@ -112,15 +112,39 @@ function renderMetronomeSearch() {
     "url(../src/assets/images/metronome.jpg)";
   initContent();
   let searchDiv = createElement("div", "search-container", "");
+  let leftDiv = createElement("div", "left", "");
+  let rightDiv = createElement("div", "right", "");
+  let orSpan = createElement("span", "or-span", "OR");
+  let standardMetronomeDiv = createElement(
+    "div",
+    "standard-metronome",
+    "STANDARD METRONOME"
+  );
   let searchInput = document.createElement("input");
   searchInput.setAttribute("type", "text");
   searchInput.id = "search-input";
   searchInput.setAttribute("placeholder", "Search for a song...");
   searchInput.setAttribute("autocomplete", "off");
   let autoCompleteUl = createElement("ul", "autocomplete-results", "");
-  searchDiv.appendChild(searchInput);
-  searchDiv.appendChild(autoCompleteUl);
+  leftDiv.appendChild(searchInput);
+  leftDiv.appendChild(autoCompleteUl);
+  rightDiv.append(standardMetronomeDiv);
+  searchDiv.appendChild(leftDiv);
+  searchDiv.append(orSpan);
+  searchDiv.appendChild(rightDiv);
   contentDiv.appendChild(searchDiv);
+  const standardMetronomeBtn = document.querySelector(".standard-metronome");
+  standardMetronomeBtn.addEventListener("click", () => {
+    console.log("hello");
+    initContent();
+    renderMetronome(
+      "Metronome",
+      "Standard",
+      "../src/assets/images/standard-metronome.png",
+      "140",
+      "4"
+    );
+  });
 }
 
 function renderMetronome(
@@ -176,7 +200,7 @@ function renderMetronome(
   const selectSongBtn = createElement(
     "div",
     "select-song",
-    "SELECT ANOTHER SONG"
+    "EXIT"
   );
   selectSongBtn.addEventListener("click", selectNewSongListener);
   bpmDisplay.appendChild(tempoSpan);
