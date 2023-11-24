@@ -1,27 +1,21 @@
 import { guitarChords } from "./chordPlayer";
 import { createElement } from "./createElement";
-var correctChord = "";
-var practiceChordList = [];
-
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+import { chordsJSONObject } from "./arrays";
+function shuffleChordsCategory(key) {
+  const chordsArray = chordsJSONObject[key];
+  if (!chordsArray) {
+    return null; 
   }
-  return array;
+
+  const shuffledChords = chordsArray.slice().sort(() => Math.random() - 0.5);
+
+  let otherChords = shuffledChords.slice(0, 4);
+
+  let correctChord = otherChords[Math.floor(Math.random() * otherChords.length)];
+  return {
+    correctChord,
+    otherChords,
+  };
 }
 
-function initPractice() {
-  correctChord = "";
-  practiceChordList = [];
-  let shuffledChords = shuffleArray(guitarChords).slice(0, 4);
-
-  for (let i = 0; i < shuffledChords.length; i++) {
-    let chordButton = createElement("button", "", shuffledChords[i]);
-    practiceChordList.push(chordButton);
-  }
-  correctChord =
-    shuffledChords[Math.floor(Math.random() * shuffledChords.length)];
-}
-
-export { initPractice, practiceChordList, correctChord };
+export { shuffleChordsCategory };

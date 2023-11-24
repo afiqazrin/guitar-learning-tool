@@ -1,10 +1,8 @@
 import {
-    renderChordPlayer,
-    renderPractice,
     renderMetronomeSearch,
-    renderStartButton,
     renderMetronome,
     renderHome,
+    renderPracticeSelection,
 } from "./render";
 import { initContent } from "./init";
 import { getAccessToken, searchSpotify, getSongInfo } from "./spotify";
@@ -20,9 +18,13 @@ homeButton.addEventListener("click", () => {
     renderHome();
 });
 
+
+
+import { dropdownTitle } from "./arrays";
+
 practiceButton.addEventListener("click", () => {
-    initContent();
-    renderStartButton();
+    initContent()
+    renderPracticeSelection()
 });
 
 metronomeButton.addEventListener("click", () => {
