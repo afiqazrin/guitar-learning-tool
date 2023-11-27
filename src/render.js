@@ -100,8 +100,8 @@ function renderPractice(category) {
         }, 1500);        
       }
       else {
-        resultsDiv.classList.add("correct")
-        resultsDiv.classList.remove("wrong")
+        resultsDiv.classList.add("wrong")
+        resultsDiv.classList.remove("correct")
         resultsDiv.textContent = "That's wrong! Try again."
       }
     });
@@ -367,9 +367,47 @@ function renderChordModal(chord) {
   }, 1500);
 }
 
+function renderYtSearch() {
+    // Render home section
+  document.body.style.backgroundImage = "url(../src/assets/images/youtube.jpg)";
+  const youtubeContainer = createElement("div", "youtube-container", "<input type='text' name='youtube-search' autocomplete='off' id='search-input' placeholder='Search for a song from YouTube...'>")
+  contentDiv.appendChild(youtubeContainer)
+}
+
+function renderYtAudioPlayer(audioData, chordArray) {
+  initContent()
+  const youtubeContainer = createElement("div", "youtube-container", "<div class='yt-top'><div class='yt-title'>Current Chord:</div><div class='chord-name'></div></div>")
+  contentDiv.appendChild(youtubeContainer)
+  const audioBlob = new Blob([audioData], { type: 'audio/mp3' });
+  const audioUrl = URL.createObjectURL(audioBlob);
+
+  const audioElement = new Audio(audioUrl);
+  audioElement.class = "yt-audio"
+  audioElement.controls = true;
+  youtubeContainer.appendChild(audioElement);  
+  audioElement.addEventListener('timeupdate', function() {
+      const currentTime = audioElement.currentTime;
+      const currentChordDiv = document.querySelector(".chord-name")
+      console.log(currentTime)
+      // Find the chord at the current time
+      const currentChord = chordArray.find(chord => currentTime >= chord[1] && currentTime < chord[1] + 1);
+
+      if (currentChord !== undefined && currentChord[0] !== "N") {
+          // Update the HTML display
+          currentChordDiv.textContent = currentChord[0] + " chord"
+        }
+        else {
+          currentChordDiv.textContent = "No chord detected"
+        }
+  });
+
+  audioElement.play();
+}
 export {
   renderPracticeSelection,
   renderMetronome,
   renderMetronomeSearch,
   renderHome,
+  renderYtSearch,
+  renderYtAudioPlayer
 };

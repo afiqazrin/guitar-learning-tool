@@ -3,6 +3,8 @@ import {
     renderMetronome,
     renderHome,
     renderPracticeSelection,
+    renderYtSearch,
+    renderYtAudioPlayer,
 } from "./render";
 import { initContent } from "./init";
 import { getAccessToken, searchSpotify, getSongInfo } from "./spotify";
@@ -10,6 +12,7 @@ import { autoCompleteSearch } from "./songSearch";
 const homeButton = document.getElementById("home-btn");
 const practiceButton = document.getElementById("practice-btn");
 const metronomeButton = document.getElementById("metronome-btn");
+const chordDetectButton = document.getElementById("chord-detect-btn")
 require('../src/scales-chords-api');
 initContent();
 renderHome();
@@ -21,6 +24,7 @@ homeButton.addEventListener("click", () => {
 
 
 import { dropdownTitle } from "./arrays";
+import { queryYoutube } from "./youtube";
 
 practiceButton.addEventListener("click", () => {
     initContent()
@@ -33,5 +37,20 @@ metronomeButton.addEventListener("click", () => {
     renderMetronomeSearch();
     const songInput = document.getElementById("search-input");
     songInput.addEventListener("keyup", autoCompleteSearch);
+
+});
+
+chordDetectButton.addEventListener("click", () => {
+    initContent();
+    renderYtSearch();
+    const searchInput = document.getElementById("search-input");
+    searchInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            queryYoutube(searchInput.value)
+            searchInput.value = "";
+            initContent()
+            document.getElementById("content").innerHTML =  "<div class='main-title'>Loading...</div>"
+        }
+      });
 
 });

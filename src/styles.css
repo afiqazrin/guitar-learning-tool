@@ -560,3 +560,29 @@ button:hover {
     pointer-events: all;
     background-color: rgba(0, 0, 0, 0.5);
 }
+
+.youtube-container
+{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.yt-audio {
+    width: 100%;
+}
+
+.yt-top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    color: white;
+    gap: 25px;
+    font-size: 50px;
+}
