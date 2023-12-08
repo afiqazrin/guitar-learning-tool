@@ -19,13 +19,49 @@
         <div class="button-container">
           <button class="home-btn" id="home-btn">Home</button>
           <button class="practice-btn" id="practice-btn">Practice</button>
-          <button class="chord-detect-btn" id="chord-detect-btn">Chord Detector</button>
+          <button class="chord-detect-btn" id="chord-detect-btn">
+            Chord Detector
+          </button>
           <button class="metronome-btn" id="metronome-btn">Metronome</button>
+          <button class="strum-btn" id="strum-btn">Strum</button>
         </div>
       </div>
       <div id="content">
+        <div class="strum-container">
+          <div class="strum-top">
+            <div class="strum-title">Strumming Pattern</div>
+            <form action="" class="strum-form">
+              <label for="strum-slider">Number of beats: <span class="beats-value">8</span></label>
+              <input
+                type="range"
+                name="strum-slider"
+                id="strum-slider"
+                value="8"
+                min="2"
+                max="8"
+              />
+            </form>
+            <form action="" class="strum-form">
+              <label for="num-strums">Number of strums: <span class="strum-value">16</span></label>
+              <input
+                type="range"
+                name="num-strums"
+                id="num-strums"
+                value="16"
+                min="2"
+                max="16"
+              />
+            </form>
+          </div>
+          <div class="strum-bottom">
+            <div class="strum-grid">
+              <div class="strum-beats">1+2+3+4+<br>↑↓↑↓↑↓</div>
+            </div>
+            <div class="strum-btn">Random</div>
+          </div>
         </div>
       </div>
+    </div>
     <script src="main.js "></script>
   </body>
 </html>

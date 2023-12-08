@@ -28,6 +28,7 @@ import {
   playAudio3,
   scales_chords_api_onload,
 } from "./scales-chords-api";
+import { updateBeatsValue, updateStrumsValue } from "./strum";
 
 function renderPracticeSelection() {
   document.body.style.backgroundImage =
@@ -68,13 +69,13 @@ function renderPractice(category) {
   console.log(chords.correctChord);
   console.log(chords.otherChords);
   const gameContainer = createElement("div", "game-container", "");
-  gameContainer.style.visibility = "hidden"
+  gameContainer.style.visibility = "hidden";
   const gameTop = createElement("div", "game-top", "");
   const playChordBtn = createElement("ins", "scales_chords_api", "");
-  const playChordDiv = createElement("div", "play-chord-btn", "")
+  const playChordDiv = createElement("div", "play-chord-btn", "");
   playChordBtn.setAttribute("chord", chords.correctChord);
   playChordBtn.setAttribute("output", "sound");
-  playChordDiv.appendChild(playChordBtn)
+  playChordDiv.appendChild(playChordBtn);
   const refreshBtn = createElement("div", "refresh-btn", "Refresh");
   const gameBottomDiv = createElement("div", "game-bottom", "");
   const selectionGrid = createElement("div", "selection-choice-grid", "");
@@ -91,18 +92,17 @@ function renderPractice(category) {
     );
     selectionGrid.appendChild(choiceBtn);
     choiceBtn.addEventListener("click", () => {
-      if(choiceBtn.textContent === chords.correctChord) {
-        resultsDiv.classList.remove("wrong")
-        resultsDiv.classList.add("correct")
-        resultsDiv.textContent = "That's right!"
+      if (choiceBtn.textContent === chords.correctChord) {
+        resultsDiv.classList.remove("wrong");
+        resultsDiv.classList.add("correct");
+        resultsDiv.textContent = "That's right!";
         setTimeout(() => {
-          renderPractice(category)        
-        }, 1500);        
-      }
-      else {
-        resultsDiv.classList.add("wrong")
-        resultsDiv.classList.remove("correct")
-        resultsDiv.textContent = "That's wrong! Try again."
+          renderPractice(category);
+        }, 1500);
+      } else {
+        resultsDiv.classList.add("wrong");
+        resultsDiv.classList.remove("correct");
+        resultsDiv.textContent = "That's wrong! Try again.";
       }
     });
   }
@@ -114,7 +114,7 @@ function renderPractice(category) {
   contentDiv.appendChild(gameContainer);
   scales_chords_api_onload();
   setTimeout(() => {
-    gameContainer.style.visibility = "visible"
+    gameContainer.style.visibility = "visible";
     const chordAudioObject = document.getElementById("scapiobjid1");
     const chordId = chordAudioObject
       .querySelector("audio")
@@ -122,10 +122,10 @@ function renderPractice(category) {
     const chordButton = chordAudioObject.querySelector(`#playbut_${chordId}`);
     // chordButton.style.width = "100%";
     // chordButton.style.height = "100%";
-    playChordDiv.onclick = function() {
-      playAudio3(chordId)
-    }
-    playAudio3(chordId)
+    playChordDiv.onclick = function () {
+      playAudio3(chordId);
+    };
+    playAudio3(chordId);
     chordAudioObject.querySelector("audio").onended = function () {
       audioStop(chordId);
     };
@@ -368,40 +368,74 @@ function renderChordModal(chord) {
 }
 
 function renderYtSearch() {
-    // Render home section
+  // Render home section
   document.body.style.backgroundImage = "url(../src/assets/images/youtube.jpg)";
-  const youtubeContainer = createElement("div", "youtube-container", "<input type='text' name='youtube-search' autocomplete='off' id='search-input' placeholder='Search for a song from YouTube...'>")
-  contentDiv.appendChild(youtubeContainer)
+  const youtubeContainer = createElement(
+    "div",
+    "youtube-container",
+    "<input type='text' name='youtube-search' autocomplete='off' id='search-input' placeholder='Search for a song from YouTube...'>"
+  );
+  contentDiv.appendChild(youtubeContainer);
 }
 
 function renderYtAudioPlayer(audioData, chordArray) {
-  initContent()
-  const youtubeContainer = createElement("div", "youtube-container", "<div class='yt-top'><div class='yt-title'>Current Chord:</div><div class='chord-name'></div></div>")
-  contentDiv.appendChild(youtubeContainer)
-  const audioBlob = new Blob([audioData], { type: 'audio/mp3' });
+  initContent();
+  const youtubeContainer = createElement(
+    "div",
+    "youtube-container",
+    "<div class='yt-top'><div class='yt-title'>Current Chord:</div><div class='chord-name'></div></div>"
+  );
+  contentDiv.appendChild(youtubeContainer);
+  const audioBlob = new Blob([audioData], { type: "audio/mp3" });
   const audioUrl = URL.createObjectURL(audioBlob);
 
   const audioElement = new Audio(audioUrl);
-  audioElement.class = "yt-audio"
+  audioElement.class = "yt-audio";
   audioElement.controls = true;
-  youtubeContainer.appendChild(audioElement);  
-  audioElement.addEventListener('timeupdate', function() {
-      const currentTime = audioElement.currentTime;
-      const currentChordDiv = document.querySelector(".chord-name")
-      console.log(currentTime)
+  youtubeContainer.appendChild(audioElement);
+  audioElement.addEventListener("timeupdate", function () {
+    const currentTime = audioElement.currentTime;
+    const currentChordDiv = document.querySelector(".chord-name");
+
+    // Check if currentChordDiv is still available
+    if (currentChordDiv) {
       // Find the chord at the current time
-      const currentChord = chordArray.find(chord => currentTime >= chord[1] && currentTime < chord[1] + 1);
+      const currentChord = chordArray.find(
+        (chord) => currentTime >= chord[1] && currentTime < chord[1] + 1
+      );
 
       if (currentChord !== undefined && currentChord[0] !== "N") {
-          // Update the HTML display
-          currentChordDiv.textContent = currentChord[0] + " chord"
-        }
-        else {
-          currentChordDiv.textContent = "No chord detected"
-        }
+        // Update the HTML display
+        currentChordDiv.textContent = currentChord[0] + " chord";
+      } else if (currentChord && currentChord[0] === "N") {
+        currentChordDiv.textContent = "No chord detected";
+      }
+    }
   });
 
   audioElement.play();
+}
+
+function renderStrum() {
+  initContent();
+  const strumContainer = createElement("div", "strum-container", "");
+  const strumTop = createElement(
+    "div",
+    "strum-top",
+    "<div class='strum-title'>Strumming Pattern</div><form action='' class='strum-form'><label for='strum-slider'>Number of beats: </label><span class='beats-value'>8</span><input type='range'name='strum-slider'id='strum-slider'min='2'max='8' value='8'/></form><form action='' class='strum-form'><label for='num-strums'>Number of strums: </label><span class='strum-value'>16</span><input type='range'name='num-strums'id='num-strums'min='2'max='16' value='16'/></form>"
+  );
+  const strumBottom = createElement(
+    "div",
+    "strum-bottom",
+    "<div class='strum-grid'><div class='strum-beats'>1+2+3+4+<br>↑↓↑↓↑↓</div></div><div class='strum-btn'>Random</div></div>"
+  );
+  strumContainer.appendChild(strumTop);
+  strumContainer.appendChild(strumBottom);
+  contentDiv.appendChild(strumContainer);
+  const beatsSlider = document.getElementById("strum-slider");
+  const strumSlider = document.getElementById("num-strums");
+  beatsSlider.addEventListener("input", updateBeatsValue);
+  strumSlider.addEventListener("input", updateStrumsValue);
 }
 export {
   renderPracticeSelection,
@@ -409,5 +443,6 @@ export {
   renderMetronomeSearch,
   renderHome,
   renderYtSearch,
-  renderYtAudioPlayer
+  renderYtAudioPlayer,
+  renderStrum,
 };

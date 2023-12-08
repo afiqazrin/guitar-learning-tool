@@ -12,6 +12,13 @@ body {
     color: black;
 }
 
+.button-container{
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    white-space: nowrap;
+    gap: 10px;
+}
 .container {
     height: 100vh;
     width: 100%;
@@ -585,4 +592,56 @@ button:hover {
     color: white;
     gap: 25px;
     font-size: 50px;
+}
+
+.strum-container {
+    color: white;
+    font-size: 40px;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.strum-top {
+    width: 100%;
+}
+
+.strum-title {
+    font-size: 60px;
+}
+
+.strum-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+.strum-bottom {
+    width: 100%;
+}
+
+.strum-grid{
+    display: grid;
+    grid-template-columns: repeat(8,2fr);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.strum-direction:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.strum-btn {
+    width: 100%;
+}
+
+.strum-btn:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.strum-beats {
 }
