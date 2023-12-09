@@ -1,67 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../src/styles.css" />
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="../src/assets/images/favicon.ico"
-    />
-    <title>Guitar Learning Tool</title>
-  </head>
 
-  <body>
-    <div class="container">
-      <div class="header">
-        <div class="title">Arrest Ten Hag</div>
-        <div class="button-container">
-          <button class="home-btn" id="home-btn">Home</button>
-          <button class="practice-btn" id="practice-btn">Practice</button>
-          <button class="chord-detect-btn" id="chord-detect-btn">
-            Chord Detector
-          </button>
-          <button class="metronome-btn" id="metronome-btn">Metronome</button>
-          <button class="strum-btn" id="strum-btn">Strum</button>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../src/styles.css" />
+  <link rel="icon" type="image/x-icon" href="../src/assets/images/favicon.ico" />
+  <title>Guitar Learning Tool</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="title">Arrest Ten Hag</div>
+      <div class="button-container">
+        <button class="home-btn" id="home-btn">Home</button>
+        <button class="practice-btn" id="practice-btn">Practice</button>
+        <button class="chord-detect-btn" id="chord-detect-btn">
+          Chord Detector
+        </button>
+        <button class="metronome-btn" id="metronome-btn">Metronome</button>
+        <button class="strum-btn" id="strum-btn">Strum</button>
       </div>
-      <div id="content">
-        <div class="strum-container">
-          <div class="strum-top">
-            <div class="strum-title">Strumming Pattern</div>
-            <form action="" class="strum-form">
-              <label for="strum-slider">Number of beats: <span class="beats-value">8</span></label>
-              <input
-                type="range"
-                name="strum-slider"
-                id="strum-slider"
-                value="8"
-                min="2"
-                max="8"
-              />
-            </form>
-            <form action="" class="strum-form">
-              <label for="num-strums">Number of strums: <span class="strum-value">16</span></label>
-              <input
-                type="range"
-                name="num-strums"
-                id="num-strums"
-                value="16"
-                min="2"
-                max="16"
-              />
-            </form>
+    </div>
+    <div id="content">
+      <div class="strum-container">
+        <div class="strum-top">
+          <div class="strum-left">
+            <label for="beats_in_bar">Beats to a bar: <span id="beats_in_bar_label"></span></label>
+            <input type="range" id="beats-in-bar" min="2" max="8" value="4">
+
+            <label for="total_strums">Total strums: <span id="total_strums_label"></span></label>
+            <input type="range" id="total-strums" min="1" max="16" value="4" max="8">
+
+            <label for="fix_first">Fix first strum: </label>
+            <input type="checkbox" id="fix-first">
+
           </div>
-          <div class="strum-bottom">
-            <div class="strum-grid">
-              <div class="strum-beats">1+2+3+4+<br>↑↓↑↓↑↓</div>
+          <div class="strum-right">
+            Random Chord
+            <div class="img-div">
+              <img alt="Dbmaj7 guitar chord" title="Dbmaj7 guitar chord"
+                src="https://www.scales-chords.com/chord-charts/guitar-Dbmaj7-d-flat-l-h-x-4-3-1-1-1.jpg">
             </div>
-            <div class="strum-btn">Random</div>
           </div>
+        </div>
+        <div class="strum-bottom">
+          <div class="randomise-pattern">Randomise Pattern</div>
+          <div class="randomise-chord">Randomise Chord</div>
+        </div>
+        <div class="pattern-output">
+          <div class="beats-div">1</div>
+          <div class="beats-div">+</div>
+          <div class="beats-div">2</div>
+          <div class="beats-div">+</div>
+          <div class="pattern-div">⬇</div>
+          <div class="pattern-div">⬆</div>
+          <div class="pattern-div">⬇</div>
+          <div class="pattern-div">⬆</div>
         </div>
       </div>
     </div>
-    <script src="main.js "></script>
-  </body>
+  </div>
+  </div>
+  <script src="main.js "></script>
+</body>
+
 </html>

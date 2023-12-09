@@ -28,7 +28,7 @@ import {
   playAudio3,
   scales_chords_api_onload,
 } from "./scales-chords-api";
-import { updateBeatsValue, updateStrumsValue } from "./strum";
+import { updateBeats, updateStrums } from "./strum";
 
 function renderPracticeSelection() {
   document.body.style.backgroundImage =
@@ -417,25 +417,11 @@ function renderYtAudioPlayer(audioData, chordArray) {
 }
 
 function renderStrum() {
-  initContent();
-  const strumContainer = createElement("div", "strum-container", "");
-  const strumTop = createElement(
-    "div",
-    "strum-top",
-    "<div class='strum-title'>Strumming Pattern</div><form action='' class='strum-form'><label for='strum-slider'>Number of beats: </label><span class='beats-value'>8</span><input type='range'name='strum-slider'id='strum-slider'min='2'max='8' value='8'/></form><form action='' class='strum-form'><label for='num-strums'>Number of strums: </label><span class='strum-value'>16</span><input type='range'name='num-strums'id='num-strums'min='2'max='16' value='16'/></form>"
-  );
-  const strumBottom = createElement(
-    "div",
-    "strum-bottom",
-    "<div class='strum-grid'><div class='strum-beats'>1+2+3+4+<br>↑↓↑↓↑↓</div></div><div class='strum-btn'>Random</div></div>"
-  );
-  strumContainer.appendChild(strumTop);
-  strumContainer.appendChild(strumBottom);
-  contentDiv.appendChild(strumContainer);
-  const beatsSlider = document.getElementById("strum-slider");
-  const strumSlider = document.getElementById("num-strums");
-  beatsSlider.addEventListener("input", updateBeatsValue);
-  strumSlider.addEventListener("input", updateStrumsValue);
+  contentDiv.innerHTML = "<div class='strum-container'><div class='strum-top'><div class='strum-left'><label for='beats-in-bar'>Beats to a bar: <span id='beats-in-bar-label'>4</span></label><input type='range' id='beats-in-bar' min='2' max='8' value='4'><label for='total-strums'>Total strums: <span id='total-strums-label'>4</span></label><input type='range' id='total-strums' min='1' max='16' value='4' max='8'><label for='fix-first'>Fix first strum: </label><input type='checkbox' id='fix-first'></div><div class='strum-right'>Random Chord<div class='img-div'></div></div></div><div class='strum-bottom'><div class='randomise-pattern'>Randomise Pattern</div><div class='randomise-chord'>Randomise Chord</div></div><div class='pattern-output'><div class='beats-div'>1</div><div class='beats-div'>+</div><div class='beats-div'>2</div><div class='beats-div'>+</div><div class='beats-div'>3</div><div class='beats-div'>+</div><div class='beats-div'>4</div><div class='beats-div'>+</div><div class='pattern-div'>⬇</div><div class='pattern-div'>⬆</div><div class='pattern-div'>⬇</div><div class='pattern-div'>⬆</div><div class='pattern-div'>⬇</div><div class='pattern-div'>⬆</div><div class='pattern-div'>⬇</div><div class='pattern-div'>⬆</div></div></div>";
+  const beatsSlider = document.getElementById('beats-in-bar');
+  const strumsSlider = document.getElementById('total-strums');
+  beatsSlider.addEventListener('input', updateBeats)
+  strumsSlider.addEventListener('input', updateStrums)
 }
 export {
   renderPracticeSelection,
@@ -444,5 +430,5 @@ export {
   renderHome,
   renderYtSearch,
   renderYtAudioPlayer,
-  renderStrum,
+  renderStrum
 };

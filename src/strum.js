@@ -1,56 +1,144 @@
+import { dropdownTitle, chordsJSONObject } from "./arrays";
 import { createElement } from "./createElement";
+import { scales_chords_api_onload } from "./scales-chords-api";
 
-function updateBeatsValue() {
-  const beatsSlider = document.getElementById("strum-slider");
-  const beatsValue = document.querySelector(".beats-value");
-  const strumGrid = document.querySelector(".strum-grid");
-  const strumSlider = document.getElementById("num-strums");
-  const strumValue = document.querySelector(".strum-value");
-  strumGrid.innerHTML = ""; // Clear existing content
+function generateRandomChord() {
+  const randomChordDiv = document.querySelector('.strum-right')
+  const imageDiv = document.querySelector('.img-div')
+  imageDiv.innerHTML = ""
+  // Directly select a random value from dropdownTitle to use as the key
+  const randomKey = dropdownTitle[Math.floor(Math.random() * dropdownTitle.length)];
+  console.log("Selected Key:", randomKey);
 
-  const value = beatsSlider.value;
-  let strumBeatsText = "";
-  for (let i = 1; i <= beatsSlider.value; i++) {
-    strumBeatsText += `${i}+`;
-  }
-  const strumBeats = createElement("div", "strum-beats", strumBeatsText);
-  strumGrid.appendChild(strumBeats);
+  // Access the chords array using the random key
+  const chordsArray = chordsJSONObject[randomKey.replace(/\s/g, "")];
 
-  beatsValue.textContent = value;
-  strumSlider.setAttribute("max", beatsSlider.value*2)
-  if(strumSlider.value > beatsSlider.value){
-    strumSlider.setAttribute("value", beatsSlider.value*2)
-  }
-  strumValue.textContent = strumSlider.value;
+  // Do something with chordsArray
+  console.log("Selected Chords Array:", chordsArray);
+
+  // Generate a random index within the range of the selected chordsArray
+  const randomChordIndex = Math.floor(Math.random() * chordsArray.length);
+
+  // Access the random chord using the generated index
+  const randomChord = chordsArray[randomChordIndex];
+  console.log("Random Chord:", randomChord);
+  const chordModal = createElement("div", "", "");
+  imageDiv.appendChild(chordModal)
+  randomChordDiv.appendChild(imageDiv);
+
+  // Create image element for chord
+  const chordImage = createElement("ins", "scales_chords_api", "");
+  chordImage.setAttribute("chord", randomChord);
+  chordImage.setAttribute("output", "image");
+  chordModal.appendChild(chordImage);
+  scales_chords_api_onload();
+
 }
 
-function updateStrumsValue() {
-  const strumSlider = document.getElementById("num-strums");
-  const strumValue = document.querySelector(".strum-value");
-  strumValue.textContent = strumSlider.value;
-}
-
-function generateStrummingPattern(num_of_strums) {
-  const randomOddArray = ["↓", "&nbsp;"];
-  const randomEvenArray = ["↑", "&nbsp;"];
-  let strummingPattern = "";
-
-  for (let i = 1; i <= num_of_strums; i++) {
-    // Determine if the current strum is odd or even
-    const isOddStrum = i % 2 !== 0;
-
-    // Choose a random symbol based on odd or even strum
-    const randomSymbol = isOddStrum
-      ? randomOddArray[Math.floor(Math.random() * randomOddArray.length)]
-      : randomEvenArray[Math.floor(Math.random() * randomEvenArray.length)];
-
-    // Append the chosen symbol to the strumming pattern
-    strummingPattern += randomSymbol;
+function updateBeats() {
+  const firstFixedInput = document.getElementById('fix-first')
+  const strumsSlider = document.getElementById('total-strums')
+  const beatsSlider = document.getElementById('beats-in-bar')
+  const beatsSliderLabel = document.getElementById('beats-in-bar-label')
+  const strumsSliderLabel = document.getElementById('total-strums-label')
+  beatsSliderLabel.textContent = beatsSlider.value
+  strumsSlider.setAttribute("max", beatsSlider.value * 2)
+  strumsSliderLabel.textContent = strumsSlider.value
+  const patternOutputDiv = document.querySelector('.pattern-output')
+  patternOutputDiv.style.gridTemplateColumns = `repeat(${beatsSlider.value * 2}, 2fr)`;
+  if (firstFixedInput.checked) {
+    generateFixedPattern(beatsSlider.value, strumsSlider.value)
   }
-  
+  else {
+    generateNonFixedPattern(beatsSlider.value, strumsSlider.value)
+  }
+
 }
 
-export { updateBeatsValue, updateStrumsValue };
+function updateStrums() {
+  const firstFixedInput = document.getElementById('fix-first')
+  const beatsSlider = document.getElementById('beats-in-bar')
+  const strumsSlider = document.getElementById('total-strums')
+  const strumsSliderLabel = document.getElementById('total-strums-label')
+  strumsSliderLabel.textContent = strumsSlider.value
+  if (firstFixedInput.checked) {
+    generateFixedPattern(beatsSlider.value, strumsSlider.value)
+  }
+  else {
+    generateNonFixedPattern(beatsSlider.value, strumsSlider.value)
+  }
+}
 
+function generateFixedPattern(numBeats, numStrums) {
+  let strumArray = [];
+  let numOfBlanks = numBeats * 2 - numStrums;
+  const patternOutputDiv = document.querySelector('.pattern-output')
+  patternOutputDiv.innerHTML = ""
+  for (let i = 1; i <= numBeats; i++) {
+    const downBeatLabel = createElement('div', 'beats-div', `${i}`)
+    const upBeatLabel = createElement('div', "beats-div", "+")
+    patternOutputDiv.appendChild(downBeatLabel)
+    patternOutputDiv.appendChild(upBeatLabel)
+  }
+  for (let i = 1; i <= numBeats * 2; i++) {
+    if (i % 2 === 0) {
+      strumArray.push("⬆");
+    } else {
+      strumArray.push("⬇");
+    }
+  }
+  const usedIndices = [];
+  for (let i = 1; i <= numOfBlanks; i++) {
+    let randomIndex;
+    do {
+      randomIndex = Math.floor(1 + Math.random() * (strumArray.length - 1));
+    } while (usedIndices.includes(randomIndex));
+    usedIndices.push(randomIndex);
+  }
+  for (let i = 0; i <= usedIndices.length; i++) {
+    const currentIndex = usedIndices[i];
+    strumArray[currentIndex] = "-"
+  }
+  for (let i = 0; i < strumArray.length; i++) {
+    const strummingPatternDiv = createElement("div", 'pattern-div', `${strumArray[i]}`)
+    patternOutputDiv.appendChild(strummingPatternDiv)
+  }
+}
+function generateNonFixedPattern(numBeats, numStrums) {
+  let strumArray = [];
+  let numOfBlanks = numBeats * 2 - numStrums;
+  const patternOutputDiv = document.querySelector('.pattern-output')
+  patternOutputDiv.innerHTML = ""
+  for (let i = 1; i <= numBeats; i++) {
+    const downBeatLabel = createElement('div', 'beats-div', `${i}`)
+    const upBeatLabel = createElement('div', "beats-div", "+")
+    patternOutputDiv.appendChild(downBeatLabel)
+    patternOutputDiv.appendChild(upBeatLabel)
+  }
+  for (let i = 1; i <= numBeats * 2; i++) {
+    if (i % 2 === 0) {
+      strumArray.push("⬆");
+    } else {
+      strumArray.push("⬇");
+    }
+  }
 
-// ↑↓
+  const usedIndices = [];
+  for (let i = 1; i <= numOfBlanks; i++) {
+    let randomIndex;
+    do {
+      randomIndex = Math.floor(Math.random() * (strumArray.length - 1));
+    } while (usedIndices.includes(randomIndex));
+    usedIndices.push(randomIndex);
+  }
+  for (let i = 0; i <= usedIndices.length; i++) {
+    const currentIndex = usedIndices[i];
+    strumArray[currentIndex] = "-"
+  }
+  for (let i = 0; i < strumArray.length; i++) {
+    const strummingPatternDiv = createElement("div", 'pattern-div', `${strumArray[i]}`)
+    patternOutputDiv.appendChild(strummingPatternDiv)
+  }
+}
+
+export { generateRandomChord, updateBeats, updateStrums, generateFixedPattern, generateNonFixedPattern };

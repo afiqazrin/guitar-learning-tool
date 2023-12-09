@@ -5,8 +5,7 @@ import {
   renderPracticeSelection,
   renderYtSearch,
   renderYtAudioPlayer,
-  renderStrum,
-} from "./render";
+  renderStrum,} from "./render";
 import { initContent } from "./init";
 import { getAccessToken, searchSpotify, getSongInfo } from "./spotify";
 import { autoCompleteSearch } from "./songSearch";
@@ -25,6 +24,7 @@ homeButton.addEventListener("click", () => {
 
 import { dropdownTitle } from "./arrays";
 import { queryYoutube } from "./youtube";
+import { generateFixedPattern, generateNonFixedPattern, generateRandomChord } from "./strum";
 
 practiceButton.addEventListener("click", () => {
   initContent();
@@ -57,4 +57,28 @@ chordDetectButton.addEventListener("click", () => {
 strumButton.addEventListener("click", () => {
   initContent();
   renderStrum();
+  generateRandomChord();
+  const fixedFirstInput = document.getElementById('fix-first')
+  fixedFirstInput.addEventListener('click', ()=>{
+    const beatsSlider = document.getElementById('beats-in-bar')
+    const strumsSlider = document.getElementById('total-strums')
+    if (fixedFirstInput.checked) {
+      generateFixedPattern(beatsSlider.value, strumsSlider.value)
+    }
+    else {
+      generateNonFixedPattern(beatsSlider.value, strumsSlider.value)
+    }
+  })
+  const randomChordButton = document.querySelector(".randomise-chord")
+  randomChordButton.addEventListener('click', generateRandomChord)
+  const randomPatternButton = document.querySelector('.randomise-pattern')
+  randomPatternButton.addEventListener('click', ()=>{
+    const beatsSlider = document.getElementById('beats-in-bar')
+    const strumsSlider = document.getElementById('total-strums')
+    if (fixedFirstInput.checked) {
+      generateFixedPattern(beatsSlider.value, strumsSlider.value)
+    }
+    else {
+      generateNonFixedPattern(beatsSlider.value, strumsSlider.value)
+    }  })
 });
