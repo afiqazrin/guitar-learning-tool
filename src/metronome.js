@@ -133,6 +133,20 @@ function selectNewSongListener() {
   const songInput = document.getElementById("search-input");
   songInput.addEventListener("keyup", autoCompleteSearch);
 }
+
+
+function handleClickOutside(event) {
+  const contentDiv = document.getElementById('content')
+  if (contentDiv.contains(event.target)) {
+  } else {
+    window.clearInterval(timer);
+    isRunning = false;
+    count = 0;
+  }
+}
+
+document.addEventListener('click', handleClickOutside);
+
 export {
   decreaseTempoListener,
   increaseTempoListener,
