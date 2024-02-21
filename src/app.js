@@ -39,20 +39,20 @@ metronomeButton.addEventListener("click", () => {
   songInput.addEventListener("keyup", autoCompleteSearch);
 });
 
-chordDetectButton.addEventListener("click", () => {
-  initContent();
-  renderYtSearch();
-  const searchInput = document.getElementById("search-input");
-  searchInput.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-      queryYoutube(searchInput.value);
-      searchInput.value = "";
-      initContent();
-      document.getElementById("content").innerHTML =
-        "<div class='main-title'>Loading...</div>";
-    }
-  });
-});
+// chordDetectButton.addEventListener("click", () => {
+//   initContent();
+//   renderYtSearch();
+//   const searchInput = document.getElementById("search-input");
+//   searchInput.addEventListener("keydown", function (event) {
+//     if (event.key === "Enter") {
+//       queryYoutube(searchInput.value);
+//       searchInput.value = "";
+//       initContent();
+//       document.getElementById("content").innerHTML =
+//         "<div class='main-title'>Loading...</div>";
+//     }
+//   });
+// });
 
 strumButton.addEventListener("click", () => {
   initContent();
