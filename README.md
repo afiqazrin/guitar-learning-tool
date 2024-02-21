@@ -1,3 +1,4 @@
+Try it out: https://afiqazrin.github.io/guitar-learning-tool/dist/index.html
 # guitar-learning-tool
 
 ## Overview
